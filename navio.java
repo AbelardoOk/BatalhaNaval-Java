@@ -1,10 +1,14 @@
 public class navio {
     int n = 10;
     int[][] map = generator();
+    int naviosRestantes;
 
     public int[][] generator(){
         System.out.println("Gerando mapa");
+
         int[][] data = new int[10][10];
+        int count = 0;
+
         for(int i = 0; i < 10; i++){
             for(int j = 0; j < 10; j++){
                 data[i][j] = 0;
@@ -24,6 +28,7 @@ public class navio {
                         if(x + i < 10){
                             for(int j = x; j < (x+i); j++){
                                 data[j][y] = 1;
+                                count++;
                             }
                         } else{
                             x--;
@@ -39,6 +44,7 @@ public class navio {
                         if(y + i < 10){
                             for(int j = y; j < (y+i); j++){
                                 data[x][j] = 1;
+                                count++;
                             }
                         } else{
                             y--;
@@ -53,6 +59,7 @@ public class navio {
                         if(x - i >= 0){
                             for(int j = x; j > (x-i); j--){
                                 data[j][y] = 1;
+                                count++;
                             }
                         } else{
                             y++;
@@ -67,6 +74,7 @@ public class navio {
                         if(y - i >= 0){
                             for(int j = y; j > (y-i); j--){
                                 data[y][j] = 1;
+                                count++;
                             }
                         } else{
                             y++;
@@ -82,6 +90,8 @@ public class navio {
             }
         }
 
+
+        this.naviosRestantes = count;
         return data;
     }
 
